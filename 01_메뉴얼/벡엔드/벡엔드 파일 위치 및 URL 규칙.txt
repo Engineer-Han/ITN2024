@@ -1,0 +1,14 @@
+벡엔드 파일 위치 및 URL 규칙
+Controller, Service, Mapper 모두 적용
+
+폴더 : basic
+테이블 : TB_EXAMPLE, TB_PRODUCT, TB_REVIEW, TB_NOTICE, TB_FAQ, TB_SIZE 
+URL : /api/basic/{'TB_' 뺀 테이블명} +@
+
+폴더 : auth
+테이블 : TB_MEMBER
+URL : /api/auth/{'TB_' 뺀 테이블명} +@
+
+폴더 : advanced
+테이블 : TB_INVENTORY, TB_CART, TB_DELIVERY, TB_ORDER, TB_PAYMENT
+URL : /api/advanced/{'TB_' 뺀 테이블명} +@
