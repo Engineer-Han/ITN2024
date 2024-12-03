@@ -1,4 +1,3 @@
-// services - DeptService.js
 import axios from "axios";
 // 벡엔드 주소 : springboot 주소(컨트롤러주소)
 const baseURL = "http://localhost:8000/api/advanced"
@@ -18,7 +17,7 @@ const update = (paid, data) => {
 const remove = (paid) => {
     return axios.delete(baseURL+`/payment/delete/${paid}`);
 }
-const ExampleService = {
+const PaymentService = {
     getAll,
     get,
     insert,
@@ -26,4 +25,4 @@ const ExampleService = {
     remove 
 }
 
-export default ExampleService;
+export default PaymentService;
