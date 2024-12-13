@@ -1,10 +1,10 @@
 import axios from "axios";
 // 벡엔드 주소 : springboot 주소(컨트롤러주소)
-const baseURL = "http://localhost:8000/api/advanced"
-// const baseURL ="http://192.168.1.82:8000/api/advanced"
+// const baseURL = "http://localhost:8000/api/advanced"
+const baseURL ="http://192.168.1.82:8000/api/advanced"
 
-const getAll = (searchKeyword, pageIndex, recordCountPerPage) => {
-    return axios.get(baseURL+`/payment?searchKeyword=${searchKeyword}&pageIndex=${pageIndex}&recordCountPerPage=${recordCountPerPage}`);
+const getAll = (searchKeyword, pageIndex, recordCountPerPage, email) => {
+    return axios.get(baseURL+`/payment?searchKeyword=${searchKeyword}&pageIndex=${pageIndex}&recordCountPerPage=${recordCountPerPage}&email=${email}`);
 }
 
 const get = (paid) => {

@@ -1,6 +1,6 @@
 import axios from "axios";
-const baseURL = "http://localhost:8000/api";
-// const baseURL ="http://192.168.1.82:8000/api"
+// const baseURL = "http://localhost:8000/api";
+const baseURL ="http://192.168.1.82:8000/api"
 // 전체조회
 const getAll = (searchKeyword, pageIndex, recordCountPerPage) => {
   return axios.get(

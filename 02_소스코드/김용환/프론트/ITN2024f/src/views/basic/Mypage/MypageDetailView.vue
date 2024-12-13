@@ -14,30 +14,28 @@
 
          <div class="left">
 
-            <li class="list-group-item p1">
-              마이페이지
-            </li>
+            <li class="list-group-item p1">마이페이지</li>
             <hr>
             <br>
 
             <li class="list-group-item p"> 나의 쇼핑  </li>
             <li class="list-group-item p2">
-                <router-link to="/mypage">-구매 내역 조회</router-link>
-             </li>
+                <a href="/mypage">-구매 내역 조회</a>
+            </li>
             <br>
             <li class="list-group-item p">나의 활동</li>
             <li class="list-group-item p2">
-                <router-link to="/inquiry"> -1:1 문의하기 </router-link>
+                <a href="/inquiry"> -1:1 문의하기 </a>
             </li>
 
             <br>
             <li class="list-group-item p">나의정보</li>
             <li class="list-group-item p2">
-                <router-link to ="/mypage/memberinfo">-회원 정보</router-link>
+                <a href="/mypage/memberinfo">-회원 정보</a>
             </li>
 
-
         </div>
+
 
         
 
@@ -59,7 +57,8 @@
 
                 <tbody>
                   <tr v-for="(data, index) in orderjoinproduct" :key="index">
-                    <td><img src="@/assets/images/koala3.jpg" width="50%"></td>
+                    <!-- <td><img src="@/assets/images/koala3.jpg" width="50%"></td> -->
+                    <td><img :src="data.imageUrl" width="70%"></td>
                     <td>{{data.code}}</td>
                     <td>{{data.gender}}<br>
                         {{data.color}}<br>
@@ -81,7 +80,7 @@
                   @click="save"></b-pagination>
             </div>
 
-              <div class="delivery">
+              <!-- <div class="delivery">
                 <h3>배송 내역 상세조회</h3>
 
                 <table class="table delivery-list mt-3">
@@ -105,7 +104,7 @@
                       </tr>
                     </tbody>
                   </table>
-              </div>
+              </div> -->
 
 
             

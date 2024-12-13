@@ -14,22 +14,22 @@
 
             <li class="list-group-item p"> 나의 쇼핑  </li>
             <li class="list-group-item p2">
-                <router-link to="/mypage">-구매 내역 조회</router-link>
-             </li>
+                <a href="/mypage">-구매 내역 조회</a>
+            </li>
             <br>
             <li class="list-group-item p">나의 활동</li>
             <li class="list-group-item p2">
-                <router-link to="/inquiry"> -1:1 문의하기 </router-link>
+                <a href="/inquiry"> -1:1 문의하기 </a>
             </li>
 
             <br>
             <li class="list-group-item p">나의정보</li>
             <li class="list-group-item p2">
-                <router-link to ="/mypage/memberinfo">-회원 정보</router-link>
+                <a href="/mypage/memberinfo">-회원 정보</a>
             </li>
 
-
         </div>
+
 
         
 
@@ -49,11 +49,11 @@
 
                 <tbody>
                   <tr v-for="(data, index) in inquiries" :key="index">
-                    <td>{{data.iqid}}</td>
+                    <td>{{ calculateIndex(index)}}</td>
 
-                      <td><router-link :to='"/inquiry/" + data.iqid'>
-                    {{data.title}} 
-                     </router-link></td>
+                      <td><a :href="'/inquiry/' + data.iqid">
+                                {{ data.title }}
+                            </a></td>
 
                     <td>{{data.insertTime}}</td>
                     <td>{{data.answerContent ? "Y" : "N"}}</td>
@@ -73,7 +73,8 @@
 
         <div class="btn">
             <button class="write-btn">
-              <router-link to ="/inquiry/write">글쓰기</router-link>
+              <!-- <router-link to ="/inquiry/write">글쓰기</router-link> -->
+              <a href="/inquiry/write">글쓰기</a>
               </button>
         </div>
         
@@ -89,12 +90,21 @@ export default {
             totalCount: 0, 
             recodeCountPerPage: 4, 
             searchKeyword: "",
-            email:"Electrionc@naver.com",
+            email:"",
             inquiries: [], 
       }
     },
+
+
     methods: {
+      calculateIndex(index) {
+      return this.totalCount -(this.pageIndex - 1) * this.recodeCountPerPage - index;
+    },
         async getInquiry(){
+          // const le = localStorage.getItem("user");
+          // const ll = JSON.parse(le);
+          // alert(ll.email);
+
           try {
             let response = await InquiryService.getAll(
                     this.searchKeyword,
@@ -113,15 +123,21 @@ export default {
        }
     },
     mounted() {
+      const userData = localStorage.getItem("user");
+      if (userData) {
+        const parsedData = JSON.parse(userData);
+        if (parsedData.email) {
+          this.email = parsedData.email; // email 값을 업데이트
+        } else {
+          console.warn("Email 값이 존재하지 않습니다.");
+        }
+      } else {
+        console.warn("localStorage에서 'user' 데이터를 찾을 수 없습니다.");
+      }
+
+
       this.getInquiry();
-      if (!this.$route.query.refreshed) {
-    this.$router.replace({
-      path: this.$route.path,
-      query: { ...this.$route.query, refreshed: true },
-    }).then(() => {
-      window.location.reload();
-    });
-  }
+
     },
 }
 </script>

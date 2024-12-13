@@ -13,22 +13,22 @@ D<template>
 
             <li class="list-group-item p"> 나의 쇼핑  </li>
             <li class="list-group-item p2">
-                <router-link to="/mypage">-구매 내역 조회</router-link>
-             </li>
+                <a href="/mypage">-구매 내역 조회</a>
+            </li>
             <br>
             <li class="list-group-item p">나의 활동</li>
             <li class="list-group-item p2">
-                <router-link to="/inquiry"> -1:1 문의하기 </router-link>
+                <a href="/inquiry"> -1:1 문의하기 </a>
             </li>
 
             <br>
             <li class="list-group-item p">나의정보</li>
             <li class="list-group-item p2">
-                <router-link to ="/mypage/memberinfo">-회원 정보</router-link>
+                <a href="/mypage/memberinfo">-회원 정보</a>
             </li>
 
-
         </div>
+
 
         
 
@@ -58,24 +58,16 @@ D<template>
                             readonly
                             v-model="inquiry.writer">
                         </td>
-                        <th scope="row" class="response">답변여부</th>
+                        <th scope="row" class="response">문의일시</th>
                         <td>
-                            <input type="text"
-                            readonly
-                            class="form-control"
-                            v-model="inquiry.anwser">
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <th scope="row" class="date">문의일시</th>
-                        <td colspan="3">
                             <input type="text"
                             readonly
                             class="form-control"
                             v-model="inquiry.insertTime">
                         </td>
                     </tr>
+                    
+                    
 
                     <tr>
                         <td colspan="4" class="questionc">
@@ -167,14 +159,7 @@ data() {
     },
         mounted() {
       this.getDetail(this.$route.params.iqid);
-     if (!this.$route.query.refreshed) {
-    this.$router.replace({
-      path: this.$route.path,
-      query: { ...this.$route.query, refreshed: true },
-    }).then(() => {
-      window.location.reload();
-    });
-  }
+     
     }
     }
       

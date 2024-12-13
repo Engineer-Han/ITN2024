@@ -5,17 +5,17 @@
   <div class="container mt-3 mb-200" >
     <router-view />
   </div>
-  <FooterCom />
+  <!-- <FooterCom /> -->
 
 
 </template>
 <script>
 import HeaderCom from "./components/HeaderCom.vue";
-import FooterCom from "./components/FooterCom.vue";
+// import FooterCom from "./components/FooterCom.vue";
 export default {
   components: {
     HeaderCom,
-    FooterCom,
+    // FooterCom,
   },
 };
 </script>

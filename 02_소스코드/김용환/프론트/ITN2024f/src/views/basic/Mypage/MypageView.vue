@@ -12,28 +12,25 @@
 
          <div class="left">
 
-            <li class="list-group-item p1">
-                <router-link to="/mypage">마이페이지</router-link>
-            </li>
+            <li class="list-group-item p1">마이페이지</li>
             <hr>
             <br>
 
             <li class="list-group-item p"> 나의 쇼핑  </li>
             <li class="list-group-item p2">
-                <router-link to="/mypage">-구매 내역 조회</router-link>
-             </li>
+                <a href="/mypage">-구매 내역 조회</a>
+            </li>
             <br>
             <li class="list-group-item p">나의 활동</li>
             <li class="list-group-item p2">
-                <router-link to="/inquiry"> -1:1 문의하기 </router-link>
+                <a href="/inquiry"> -1:1 문의하기 </a>
             </li>
 
             <br>
             <li class="list-group-item p">나의정보</li>
             <li class="list-group-item p2">
-                <router-link to ="/mypage/memberinfo">-회원 정보</router-link>
+                <a href="/mypage/memberinfo">-회원 정보</a>
             </li>
-
 
         </div>
 
@@ -60,14 +57,15 @@
                     <td>{{data.code}}</td>
                     <td>{{data.totalPrice}}</td>
                     <td>{{data.insertTime}}</td>
-                    <td><router-link :to='"/mypage/detail/" + data.paid'>[상세보기]</router-link></td>
+                    <!-- <td><router-link :to='"/mypage/detail/" + data.paid'>[상세보기]</router-link></td> -->
+                    <td><a :href="'/mypage/detail/' + data.paid">[상세보기]</a></td>
                     <td>   <button
                              
                             :disabled="!!data.deleteTime" 
                             @click="update(data.paid)" 
                             :style="{ cursor: data.deleteTime ? 'not-allowed' : 'pointer' }"
                           >
-                            [환불하기]
+                            환불하기
                           </button></td>
 
                     <td>
@@ -82,7 +80,7 @@
             <!-- 페이징 -->
             <div class=" page">
                  <b-pagination v-model="pageIndex" :total-rows="totalCount" :per-page="recodeCountPerPage"
-                @click="getInquiry"></b-pagination>
+                @click="getPayment"></b-pagination>
             </div>
             
         </div>
@@ -109,6 +107,7 @@ export default {
             totalCount: 0, 
             recodeCountPerPage: 4, 
             searchKeyword: "",
+            email:"",
             payments: {
               paid:""
             }, 
@@ -116,13 +115,14 @@ export default {
     },
  methods: {
   async getPayment(){
-    try {
+    try {       
       let response = await PaymentService.getAll(
         this.searchKeyword,
         this.pageIndex - 1,
         this.recodeCountPerPage,
+        this.email,
       );
-      const { results, totalCount } =response.data;
+      const { results, totalCount } = response.data;
       console.log(response.data);
       this.payments = results;
       this.totalCount = totalCount;
@@ -136,7 +136,8 @@ export default {
              let response 
              = await PaymentService.update(paid, payload);
              console.log(response.data);
-             this.$router.push("/mypage");
+             window.location.href = "/mypage"; // 등록 후 이동
+            //  this.$router.push("/mypage");
              alert("환불 완료.")
           } catch (error) {
             console.log(error);
@@ -145,15 +146,23 @@ export default {
  },
   
   mounted() {
+     const userData = localStorage.getItem("user");
+      if (userData) {
+        const parsedData = JSON.parse(userData);
+        if (parsedData.email) {
+          this.email = parsedData.email; // email 값을 업데이트
+        } else {
+          console.warn("Email 값이 존재하지 않습니다.");
+        }
+      } else {
+        console.warn("localStorage에서 'user' 데이터를 찾을 수 없습니다.");
+      }
+
+
     this.getPayment();
-     if (!this.$route.query.refreshed) {
-    this.$router.replace({
-      path: this.$route.path,
-      query: { ...this.$route.query, refreshed: true },
-    }).then(() => {
-      window.location.reload();
-    });
-  }
+
+
+     
   },
 }
 </script>

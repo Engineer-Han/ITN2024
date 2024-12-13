@@ -6,24 +6,29 @@
     <hr class="hr2">
 
     <div class="left">
-      <li class="list-group-item p1">마이페이지</li>
-      <hr>
-      <br>
-      <li class="list-group-item p">나의 쇼핑</li>
-      <li class="list-group-item p2">
-        <router-link to="/mypage">-구매 내역 조회</router-link>
-      </li>
-      <br>
-      <li class="list-group-item p">나의 활동</li>
-      <li class="list-group-item p2">
-        <router-link to="/inquiry">-1:1 문의하기</router-link>
-      </li>
-      <br>
-      <li class="list-group-item p">나의정보</li>
-      <li class="list-group-item p2">
-        <router-link to="/mypage/memberinfo">-회원 정보</router-link>
-      </li>
+
+        <li class="list-group-item p1">마이페이지</li>
+        <hr>
+        <br>
+
+        <li class="list-group-item p"> 나의 쇼핑  </li>
+        <li class="list-group-item p2">
+            <a href="/mypage">-구매 내역 조회</a>
+        </li>
+        <br>
+        <li class="list-group-item p">나의 활동</li>
+        <li class="list-group-item p2">
+            <a href="/inquiry"> -1:1 문의하기 </a>
+        </li>
+
+        <br>
+        <li class="list-group-item p">나의정보</li>
+        <li class="list-group-item p2">
+            <a href="/mypage/memberinfo">-회원 정보</a>
+        </li>
+
     </div>
+
 
     <div class="main">
       <h2>1:1 문의내역</h2>
@@ -54,7 +59,7 @@
 
     <div class="btn">
       <button class="upload-btn" @click="save">등록</button>
-      <router-link to='/inquiry' class="delete-btn">취소</router-link>
+     <button class="delete-btn"> <a href="/inquiry">취소</a></button>
     </div>
   </div>
 </template>
@@ -70,7 +75,7 @@ export default {
       inquiry: {
         title: "",         // 제목
         contents: "",      // 본문
-        writer: "Electrionc@naver.com", // 작성자
+        writer: "", // 작성자
       },
       quill: null, // Quill 인스턴스를 저장할 변수
     };
@@ -138,15 +143,29 @@ export default {
         });
 
         console.log("Response:", response.data);
-        this.$router.push("/inquiry"); // 등록 후 이동
+        window.location.href = "/inquiry"; // 등록 후 이동
       } catch (error) {
         console.error("Error during save:", error);
       }
     }
   },
-   mounted() {
+    mounted() {
     // Quill 에디터 초기화
     this.initQuill();
+
+    // localStorage에서 writer 값 설정
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const parsedData = JSON.parse(userData);
+      if (parsedData.email) {
+        this.inquiry.writer = parsedData.email; // writer 값 설정
+        console.log("Writer set to:", this.inquiry.writer); // 디버깅 로그
+      } else {
+        console.warn("Email 값이 존재하지 않습니다.");
+      }
+    } else {
+      console.warn("localStorage에서 'user' 데이터를 찾을 수 없습니다.");
+    }
   },
 };
 </script>

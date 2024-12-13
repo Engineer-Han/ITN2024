@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+
 
 const routes = [
   {
     path: '/',
-    component: HomeView
+    component: () => import('../views/HomeView.vue')
   },
   {
     path: '/about',
@@ -39,6 +39,91 @@ const routes = [
     component: () => import('../views/basic/Mypage/MemberInfoView.vue')
   },
   
+  //회원가입 , 로그인 , 홈
+  {
+    path: '/register',
+    component: () => import('../views/auth/RegisterView.vue')
+  },
+  {
+    path: '/login',
+    component: () => import('../views/auth/LoginView.vue')
+  },
+
+  // 고객센터 - 공지사항
+  {
+    path: '/notice',
+    component: () => import('../views/basic/Center/notice/NoticeView.vue')
+  },
+  {
+    path: '/add-notice',
+    component: () => import('../views/basic/Center/notice/AddNotice.vue')
+  },
+  {
+    path: '/notice/:noid',
+    component: () => import('../views/basic/Center/notice/NoticeDetail.vue')
+  },
+
+  //쇼핑카트
+  {
+    // path(/gallery), component(GalleryView.vue)
+    path: '/cart',
+    component: () => import('../views/advanced/cart/CartView.vue')
+  },
+  {
+    // path(/add-gallery), component(AddGallery.vue)
+    path: '/add-cart',
+    component: () => import('../views/advanced/cart/AddCart.vue')
+  },
+  {
+    // path(/fileDb/:uuid), component(FileDbDetail.vue)
+    path: '/cart/:uuid',
+    component: () => import('../views/advanced/cart/CartDetail.vue')
+  },
+
+//관리자
+{
+  path: "/AdminHome",
+  component: () => import("../views/admin/AdminHomeVue.vue"),
+},
+{
+  path: "/AdminMember",
+  component: () => import("../views/admin/AdminMemberVue.vue"),
+},
+
+{
+  path: "/AdminOrder",
+  component: () => import("../views/admin/AdminOrderVue.vue"),
+},
+{
+  path: "/AdminOrderDetail",
+  component: () => import("../views/admin/AdminOrderDetailVue.vue"),
+},
+{
+  path: "/AdminAnouncement",
+  component: () => import("../views/admin/AdminAnnouncementVue.vue"),
+},
+{
+  path: "/AdminAnouncementAdd",
+  component: () => import("../views/admin/AdminAnnouncementAdd.vue"),
+},
+{
+  path: "/AdminAnouncement/:noid",
+  component: () => import("../views/admin/AdminAnnouncementDetailView.vue"),
+},
+{
+  path: "/AdminAnouncementUpdate/:noid",
+  component: () => import("../views/admin/AdminAnnouncementUpdate.vue"),
+},
+{
+  path: "/AdminFaq",
+  component: () => import("../views/admin/AdminFaqVue.vue"),
+},
+{
+  path: "/AdminFaqDetailView/:iqid",
+  component: () => import("../views/admin/AdminFaqDetailView.vue"),
+},
+
+
 ]
 
 const router = createRouter({
