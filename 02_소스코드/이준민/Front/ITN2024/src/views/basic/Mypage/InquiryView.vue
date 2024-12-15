@@ -51,7 +51,7 @@
                   <tr v-for="(data, index) in inquiries" :key="index">
                     <td>{{ calculateIndex(index)}}</td>
 
-                      <td><a :href="'/inquiry/' + data.iqid">
+                      <td><a :href="'/basic/mypage/inquiry/' + data.iqid">
                                 {{ data.title }}
                             </a></td>
 
@@ -74,7 +74,7 @@
         <div class="btn">
         <a href="/basic/mypage/inquiry/write">
             <button class="write-btn">
-              <!-- <router-link to ="/inquiry/write">글쓰기</router-link> -->
+              <!-- <router-link to ="/basic/mypage/inquiry/write">글쓰기</router-link> -->
               글쓰기
               </button>
               </a>

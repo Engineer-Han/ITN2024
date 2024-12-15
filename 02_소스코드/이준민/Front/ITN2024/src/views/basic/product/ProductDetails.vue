@@ -143,6 +143,13 @@
         </div>
       </div>
     </div>
+        <img
+      v-if="showButton"
+      :src="buttonImage"
+      class="scroll-button"
+      :alt="buttonAltText"
+      @click="scrollToTarget"
+    />
   </div>
 </template>
 
@@ -162,6 +169,10 @@ export default {
       activeTab: "details",
       quantity: 1,
       email: "",
+      showButton: false, // 버튼 표시 여부
+      scrollPosition: 0, // 현재 스크롤 위치
+      buttonImage: require("@/assets/images/fix/downArrow.png"), // 초기 버튼 이미지
+      buttonAltText: "맨 밑으로", // 초기 버튼 대체 텍스트
     };
   },
   methods: {
