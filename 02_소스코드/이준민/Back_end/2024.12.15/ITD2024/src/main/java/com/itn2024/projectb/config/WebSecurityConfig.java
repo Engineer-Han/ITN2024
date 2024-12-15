@@ -53,12 +53,8 @@ public class WebSecurityConfig {
 
         http.authorizeHttpRequests(
                 req -> req.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                        .requestMatchers(
-                                "/api/auth/**",  // 로그인, 회원가입 등 auth 관련 페이지 모두 허용
-                                "/api/basic/product/**",  // 상품 관련 페이지 모두 허용
-                                "/api/basic/notice/**"  // 공지사항 리스트
-                        ).permitAll()  // 위에 나열된 경로는 모두 허용
-                        .anyRequest().authenticated()  // 나머지 모든 요청은 인증 필요
+                        .requestMatchers("/").permitAll()
+                        .anyRequest().permitAll()
         );
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

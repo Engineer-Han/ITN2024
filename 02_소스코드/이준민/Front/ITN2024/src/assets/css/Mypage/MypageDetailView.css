@@ -73,24 +73,6 @@ text-align: center;
     padding: 10px; 
     
 }
-.buy-list th:nth-child(1){
-    width: 150px;
-}
-.buy-list th:nth-child(2){
-    width: 100px;
-}
-.buy-list th:nth-child(3){
-    width: 100px;
-}
-.buy-list th:nth-child(4){
-    width: 75px;
-}
-.buy-list th:nth-child(5){
-    width: 100px;
-}
-.buy-list th:nth-child(6){
-    width: 50px;
-}
 
 .buy-list th{
     height: 60px;

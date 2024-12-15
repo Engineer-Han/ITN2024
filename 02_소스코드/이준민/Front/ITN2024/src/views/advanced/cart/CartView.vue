@@ -49,7 +49,7 @@
               <img :src="data.fileUrl" alt="상품 이미지" />
               <div class="item-details">
                 <h5>{{ data.name }}</h5>
-                <p>{{ data.price }}원</p>
+                <p>{{ formatPrice(data.price) }}원</p>
               </div>
             </div>
 
@@ -183,6 +183,11 @@ export default {
   },
 
   methods: {
+    formatPrice(price) {
+      return price.toLocaleString("ko-KR", {
+        currency: "KRW",
+      });
+    },
     //  전체선택 하는 함수
     toggleSelectAll(event) {
       this.allSelected = event.target.checked; // 전체 선택 체크박스 상태 업데이트

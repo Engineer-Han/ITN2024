@@ -55,7 +55,7 @@
                 <tbody>
                   <tr v-for="(data, index) in payments" :key="index">
                     <td>{{data.code}}</td>
-                    <td>{{data.totalPrice}}</td>
+                    <td>{{data.totalPrice}}원</td>
                     <td>{{data.insertTime}}</td>
                     <!-- <td><router-link :to='"/basic/mypage/detail/" + data.paid'>[상세보기]</router-link></td> -->
                     <td><a :href="'/basic/mypage/detail/' + data.paid">[상세보기]</a></td>
@@ -114,6 +114,11 @@ export default {
       }
     },
  methods: {
+  formatPrice(price) {
+      return price.toLocaleString("ko-KR", {
+        currency: "KRW",
+      });
+    },
   async getPayment(){
     try {       
       let response = await PaymentService.getAll(
