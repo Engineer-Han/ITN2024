@@ -42,7 +42,7 @@
           삭제
         </button>
 
-        <a href="/AdminAnouncement">
+        <a href="/admin/AdminAnouncement">
           <button type="button" class="btn btn-secondary">확인/뒤로가기</button>
         </a>
       </div>

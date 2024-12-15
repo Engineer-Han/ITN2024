@@ -166,7 +166,7 @@ export default {
 
         let response = await InquiryService.insertadmin(answerData);
         console.log(response.data);
-        this.$router.push("/AdminFaq");
+        this.$router.push("/admin/AdminFaq");
       } catch (error) {
         console.log(error);
       }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 20px;">
     <h3>Welcome! Admin</h3>
     <hr />
     <br />

@@ -11,7 +11,7 @@
     <!-- 사이드바 -->
     <div class="card mt-3">
       <div class="card-header .bg-light text-black text-center">
-        <h4 class="card-title"><a href="/AdminHome">Admin System </a></h4>
+        <h4 class="card-title"><a href="/admin/AdminHome">Admin System </a></h4>
       </div>
       <div class="list-group text-center">
         <a href="/admin/AdminMember" class="list-group-item list-group-item-action"
